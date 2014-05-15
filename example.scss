@@ -1,0 +1,18 @@
+// This is a sample NodeSCSS application. 
+
+@import 'nodelib';
+
+@function handle_request($request) {
+
+    $browser: map-get($request, 'user_agent');
+    $path_list: split_string(map-get($request, 'path'), "/");
+    
+    $hello_name: "World";
+    @if length($path_list) >= 2 {
+        $hello_name: nth($path_list, 2);
+    }
+    
+    @return '<h1>Hello #{$hello_name}!</h1>' + 
+        '<p>Your user agent is: #{$browser}</p>' +
+        '<small>Powered by NodeSCSS</small>';
+}

@@ -1,0 +1,18 @@
+@function split_string($path, $seperator){
+    // Returns list of substrings
+    $tmp: $path;
+    $return: ();
+    $working: true;
+    @while $working {
+        $next_pos: str-index($path, $seperator);
+        @if $next_pos == null {
+            $return: append($return, $path);
+            @return $return;
+        }@else if $next_pos == 1{
+            $path: str-slice($path, 2);
+        }@else{
+            $return: append($return, str-slice($path, 0, $next_pos - 1));
+            $path: str-slice($path, $next_pos+1);
+        }
+    }
+}
