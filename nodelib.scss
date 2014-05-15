@@ -1,9 +1,7 @@
 @function split_string($path, $seperator){
     // Returns list of substrings
-    $tmp: $path;
     $return: ();
-    $working: true;
-    @while $working {
+    @while true {
         $next_pos: str-index($path, $seperator);
         @if $next_pos == null {
             $return: append($return, $path);
